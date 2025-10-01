@@ -63,18 +63,16 @@ class Track(models.Model):
     featured_artists = models.ManyToManyField(Artist, verbose_name='участвующие артисты',related_name='featured_tracks', blank=True)
     album = models.ForeignKey(Album, verbose_name='альбом', on_delete=models.SET_NULL, blank=True, null=True)
     duration = models.IntegerField(verbose_name='длительность (секунды)')
-    audio_url = models.URLField(verbose_name='аудио файл')
-    track_number = models.IntegerField(verbose_name='номер трека', blank=True, null=True)
     listens_count = models.IntegerField(verbose_name='количество прослушиваний', default=0)
     created_at = models.DateTimeField(verbose_name='дата добавления', auto_now_add=True)
     
     class Meta:
         verbose_name = "Трек"
         verbose_name_plural = "Треки"
-        ordering = ["album", "track_number"]
+        ordering = ["album"]
         indexes = [
             models.Index(fields=["main_artist", "listens_count"]),
-            models.Index(fields=["album", "track_number"])
+            models.Index(fields=["album"])
         ]
 
 class Playlist(models.Model):
@@ -89,14 +87,7 @@ class Playlist(models.Model):
     class Meta:
         verbose_name = "Плейлист"
         verbose_name_plural = "Плейлисты"
-        ordering = ["-created_date"]
-        constraints = [
-            models.UniqueConstraint(
-                fields=["title", "user"],
-                condition=models.Q(user__isnull=False),
-                name="unique_user_playlist_title"
-            )
-        ]
+        ordering = ["-created_at"]
 
 class PlaylistTrack(models.Model):
     playlist = models.ForeignKey(Playlist, on_delete=models.CASCADE)
@@ -133,23 +124,10 @@ class UserFavorite(models.Model):
     class Meta:
         verbose_name = "Избранное"
         verbose_name_plural = "Избранное"
-        constraints = [
-            models.UniqueConstraint(
-                fields=["user", "track"],
-                name="unique_user_favorite_track"
-            ),
-            models.UniqueConstraint(
-                fields=["user", "artist"],
-                name="unique_user_favorite_artist"
-            ),
-            models.CheckConstraint(
-                check=models.Q(trackisnull=False) | models.Q(artistisnull=False),
-                name="favorite_has_track_or_artist"
-            )
-        ]
+        ordering = ["user"]
 
-def str(self):
-    if self.track:
-        return f"{self.user.username} - {self.track.title}"
-    else:
-        return f"{self.user.username} - {self.artist.name}"
+    def __str__(self):
+        if self.track:
+            return f"{self.user.username} - {self.track.title}"
+        else:
+            return f"{self.user.username} - {self.artist.name}"
