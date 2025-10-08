@@ -5,11 +5,7 @@ class User(models.Model):
     email = models.EmailField(verbose_name='email', max_length=100, unique=True)
     password_hash = models.CharField(verbose_name='хэш пароля', max_length=255)
     avatar = models.URLField(verbose_name='аватар', blank=True, null=True)
-    registration_date = models.DateTimeField(verbose_name='дата регистрации', auto_now_add=True)
-    subscription_type = models.CharField(verbose_name='тип подписки', max_length=10, choices=[
-        ('free', 'Бесплатная'),
-        ('premium', 'Премиум')
-    ], default='free')
+    registration_date = models.DateField(verbose_name='дата регистрации', auto_now_add=True)
     
     class Meta:
         verbose_name = "Пользователь"
@@ -19,6 +15,9 @@ class User(models.Model):
             models.Index(fields=["username"]),
             models.Index(fields=["email"])
         ]
+
+    def __str__(self):
+        return self.username
 
 class Artist(models.Model):
     name = models.CharField(verbose_name='имя артиста', max_length=100)
@@ -34,6 +33,9 @@ class Artist(models.Model):
         indexes = [
             models.Index(fields=["name"])
         ]
+
+    def __str__(self):
+        return self.name
 
 class Album(models.Model):
     ALBUM_TYPES = [
@@ -57,6 +59,9 @@ class Album(models.Model):
             models.Index(fields=["artist", "release_date"])
         ]
 
+    def __str__(self):
+        return self.title
+
 class Track(models.Model):
     title = models.CharField(verbose_name='название трека', max_length=200)
     main_artist = models.ForeignKey(Artist, verbose_name='основной артист', on_delete=models.CASCADE)
@@ -64,7 +69,7 @@ class Track(models.Model):
     album = models.ForeignKey(Album, verbose_name='альбом', on_delete=models.SET_NULL, blank=True, null=True)
     duration = models.IntegerField(verbose_name='длительность (секунды)')
     listens_count = models.IntegerField(verbose_name='количество прослушиваний', default=0)
-    created_at = models.DateTimeField(verbose_name='дата добавления', auto_now_add=True)
+    created_at = models.DateField(verbose_name='дата добавления', auto_now_add=True)
     
     class Meta:
         verbose_name = "Трек"
@@ -75,36 +80,13 @@ class Track(models.Model):
             models.Index(fields=["album"])
         ]
 
-class Playlist(models.Model):
-    title = models.CharField(verbose_name='название плейлиста', max_length=200)
-    user = models.ForeignKey(User, verbose_name='пользователь', on_delete=models.CASCADE, blank=True, null=True)
-    description = models.TextField(verbose_name='описание', blank=True, null=True)
-    cover_url = models.URLField(verbose_name='обложка', blank=True, null=True)
-    is_public = models.BooleanField(verbose_name='публичный', default=True)
-    tracks = models.ManyToManyField(Track, verbose_name='треки', through='PlaylistTrack')
-    created_at = models.DateTimeField(verbose_name='дата создания', auto_now_add=True)
-    
-    class Meta:
-        verbose_name = "Плейлист"
-        verbose_name_plural = "Плейлисты"
-        ordering = ["-created_at"]
-
-class PlaylistTrack(models.Model):
-    playlist = models.ForeignKey(Playlist, on_delete=models.CASCADE)
-    track = models.ForeignKey(Track, on_delete=models.CASCADE)
-    position = models.IntegerField(verbose_name='позиция в плейлисте')
-    added_at = models.DateTimeField(verbose_name='дата добавления', auto_now_add=True)
-    
-    class Meta:
-        verbose_name = "Трек в плейлисте"
-        verbose_name_plural = "Треки в плейлистах"
-        ordering = ["playlist", "position"]
-        unique_together = ['playlist', 'track']
+    def __str__(self):
+        return self.title
 
 class ListeningHistory(models.Model):
     user = models.ForeignKey(User, verbose_name='пользователь', on_delete=models.CASCADE)
     track = models.ForeignKey(Track, verbose_name='трек', on_delete=models.CASCADE)
-    listened_at = models.DateTimeField(verbose_name='время прослушивания', auto_now_add=True)
+    listened_at = models.DateField(verbose_name='время прослушивания', auto_now_add=True)
     playback_duration = models.IntegerField(verbose_name='длительность прослушивания')
     
     class Meta:
@@ -126,8 +108,9 @@ class UserFavorite(models.Model):
         verbose_name_plural = "Избранное"
         ordering = ["user"]
 
-    def __str__(self):
-        if self.track:
-            return f"{self.user.username} - {self.track.title}"
-        else:
-            return f"{self.user.username} - {self.artist.name}"
+
+def __str__(self):
+    if self.track:
+        return f"{self.user.username} - {self.track.title}"
+    else:
+        return f"{self.user.username} - {self.artist.name}"

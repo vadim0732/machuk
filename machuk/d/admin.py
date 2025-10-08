@@ -7,8 +7,6 @@ admin.site.register(User)
 admin.site.register(Artist)
 admin.site.register(Album)
 admin.site.register(Track)
-admin.site.register(Playlist)
-admin.site.register(PlaylistTrack)
 admin.site.register(ListeningHistory)
 admin.site.register(UserFavorite)
 
