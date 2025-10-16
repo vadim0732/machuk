@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% block tab_header %} {% endblock tab_header %}</title>
 </head>
 <body>
-    <h1>Начало тута</h1>
-    <p> {{}} </p>
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
 </body>
 </html>

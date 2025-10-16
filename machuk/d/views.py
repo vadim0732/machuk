@@ -1,9 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from .models import *
-# Create your views here.
 
 def index(request):
 
-    users = User.username
+    artist = Artist.name
 
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'artist': artist})
