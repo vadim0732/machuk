@@ -110,7 +110,7 @@ body {
 .hero {
     text-align: center;
     padding: 4rem 2rem;
-    background: linear-gradient(135deg, rgba(255, 65, 108, 0.1) 0%, rgba(255, 65, 108, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(65, 255, 97, 0.08) 100%);
     border-radius: 20px;
     margin-bottom: 3rem;
 }
@@ -121,4 +121,101 @@ body {
     background: linear-gradient(135deg, #61e268, #19ff19);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #b3b3b3;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: #41ff71;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    background: #22fa22;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgb(26, 255, 45);
+}
+
+section {
+    margin-bottom: 4rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: #51fc3a;
+    font-weight: bold;
+}
+
+.view-all {
+    color: #b3b3b3;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.view-all:hover {
+    color: #61ff41;
+}
+
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.grid-4 {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.grid-6 {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.card {
+    background: rgba(40, 40, 40, 0.8);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(red, green, blue, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    background: rgba(50, 50, 50, 0.9);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.card-img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: transform 0.3 ease;
+}
+
+.card:hover .card-img {
+    transform: scale(1.05);
 }
