@@ -219,3 +219,77 @@ section {
 .card:hover .card-img {
     transform: scale(1.05);
 }
+
+.card-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-subtitle {
+    color: #b3b3b3;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-list {
+    background: rgba(24, 24, 24, 0.8);
+    border-radius: 12px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.track-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.track-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.track-item:last-child {
+    border-bottom: none;
+}
+
+.track-number {
+    width: 40px;
+    color: #b3b3b3;
+    font-weight: bold;
+}
+
+.track-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.track-title {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-artist {
+    color: #b3b3b3;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-duration {
+    color: #b3b3b3;
+    font-size: 0.9rem;
+}
