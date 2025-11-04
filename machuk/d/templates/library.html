@@ -8,218 +8,127 @@
 </head>
 <body>
     <header class="header">
-        <a href="main.html" class="logo">Weren't Here Music</a>
+        <a href="index.html" class="logo">Weren't Here Music</a>
         
-        <nav class  ="nav">
-            <a href="main.html" class="active">Главная</a>
-            <a href="#">Поиск</a>
-            <a href="#">Моя медиатека</a>
-            <a href="#">Популярное</a>
-            <a href="#">Новые релизы</a>
+        <nav class="nav">
+            <a href="main.html">Главная</a>
+            <a href="library.html" class="active">Моя медиатека</a>
+            <a href="search.html">Поиск</a>
+            <a href="#">Чарты</a>
         </nav>
 
-        <form class="search-form">
-            <input type="text" class="search-input" placeholder="Поиск музыки, артистов, альбомов...">
+        <form class="search-form" action="search.html">
+            <input type="text" name="q" class="search-input" placeholder="Поиск в медиатеке...">
             <button type="submit" class="search-button">Найти</button>
         </form>
     </header>
 
     <main class="main-content">
-        <section class="hero">
-            <h1>Открой мир музыки</h1>
-            <p>Миллионы треков, тысячи артистов и безграничные возможности для вашего музыкального путешествия</p>
-            <button class="cta-button">Начать слушать бесплатно</button>
-        </section>
+        <div class="hero">
+            <h1>Моя медиатека</h1>
+            <p>Ваша личная коллекция музыки</p>
+        </div>
 
-        <section class="section">
+        <div class="library-tabs">
+            <button class="tab active" onclick="switchTab('liked')">Любимые треки</button>
+            <button class="tab" onclick="switchTab('artists')">Подписки</button>
+            <button class="tab" onclick="switchTab('playlists')">Плейлисты</button>
+            <button class="tab" onclick="switchTab('history')">История</button>
+        </div>
+
+        <div id="liked" class="tab-content active">
             <div class="section-header">
-                <h2 class="section-title">Популярные треки</h2>
-                <a href="#" class="view-all">Смотреть все</a>
+                <h2 class="section-title">Любимые треки</h2>
+                <span class="track-count">15 треков</span>
             </div>
             
             <div class="track-list">
                 <div class="track-item">
-                    <div class="track-number">1</div>
+                    <div class="track-number">❤️</div>
                     <div class="track-info">
-                        <div class="track-title">Blinding Lights</div>
-                        <div class="track-artist">The Weeknd</div>
+                        <div class="track-title">Темный принц</div>
+                        <div class="track-artist">fortuna812</div>
                     </div>
-                    <div class="track-duration">3:20</div>
+                    <div class="track-duration">2:45</div>
                     <button class="play-button">▶</button>
                 </div>
                 
                 <div class="track-item">
-                    <div class="track-number">2</div>
+                    <div class="track-number">❤️</div>
                     <div class="track-info">
-                        <div class="track-title">Shape of You</div>
-                        <div class="track-artist">Ed Sheeran</div>
+                        <div class="track-title">Кристальные слезы</div>
+                        <div class="track-artist">onda</div>
                     </div>
-                    <div class="track-duration">3:53</div>
+                    <div class="track-duration">3:12</div>
                     <button class="play-button">▶</button>
                 </div>
                 
                 <div class="track-item">
-                    <div class="track-number">3</div>
+                    <div class="track-number">❤️</div>
                     <div class="track-info">
-                        <div class="track-title">Dance Monkey</div>
-                        <div class="track-artist">Tones and I</div>
+                        <div class="track-title">Бесконечность</div>
+                        <div class="track-artist">anda</div>
                     </div>
-                    <div class="track-duration">3:29</div>
-                    <button class="play-button">▶</button>
-                </div>
-                
-                <div class="track-item">
-                    <div class="track-number">4</div>
-                    <div class="track-info">
-                        <div class="track-title">Bad Guy</div>
-                        <div class="track-artist">Billie Eilish</div>
-                    </div>
-                    <div class="track-duration">3:14</div>
-                    <button class="play-button">▶</button>
-                </div>
-                
-                <div class="track-item">
-                    <div class="track-number">5</div>
-                    <div class="track-info">
-                        <div class="track-title">Watermelon Sugar</div>
-                        <div class="track-artist">Harry Styles</div>
-                    </div>
-                    <div class="track-duration">2:54</div>
+                    <div class="track-duration">2:58</div>
                     <button class="play-button">▶</button>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="section">
+        <div id="artists" class="tab-content">
             <div class="section-header">
-                <h2 class="section-title">Новые релизы</h2>
-                <a href="#" class="view-all">Смотреть все</a>
+                <h2 class="section-title">Подписки на артистов</h2>
             </div>
             
             <div class="grid grid-6">
                 <div class="card">
-                    <img src="../static/images/scale_1200.jpg" alt="yral" class="card-img">
-                    <div class="card-title">Midnights</div>
-                    <div class="card-subtitle">Taylor Swift</div>
+                    <img src="" 
+                         alt="fortuna812" class="card-img">
+                    <div class="card-title">fortuna812</div>
+                    <div class="card-subtitle">✓ Проверенный</div>
                 </div>
                 
                 <div class="card">
-                    <img src="../static/images/scale_1200.jpg" alt="yral" class="card-img">
-                    <div class="card-title">Harry's House</div>
-                    <div class="card-subtitle">Harry Styles</div>
+                    <img src="" 
+                         alt="onda" class="card-img">
+                    <div class="card-title">onda</div>
+                    <div class="card-subtitle">✓ Проверенный</div>
                 </div>
                 
                 <div class="card">
-                    <img src="../static/images/scale_1200.jpg" alt="yral" class="card-img">
-                    <div class="card-title">Un Verano Sin Ti</div>
-                    <div class="card-subtitle">Bad Bunny</div>
-                </div>
-                
-                <div class="card">
-                    <img src="../static/images/Dawn_FM.jpg" alt="yral" class="card-img">
-                    <div class="card-title">Dawn FM</div>
-                    <div class="card-subtitle">The Weeknd</div>
-                </div>
-                
-                <div class="card">
-                    <img src="../static/images/scale_1200.jpg" alt="yral" class="card-img">
-                    <div class="card-title">ya istekau krovyu</div>
-                    <div class="card-subtitle">Ural gaisin</div>
-                </div>
-                
-                <div class="card">
-                    <img src="../static/images/adun.jpg" alt="DJadun" class="card-img">
-                    <div class="card-title">Papich</div>
-                    <div class="card-subtitle">DJAdun</div>
+                    <img src="" 
+                         alt="anda" class="card-img">
+                    <div class="card-title">anda</div>
+                    <div class="card-subtitle">✓ Проверенный</div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="section">
+        <div id="history" class="tab-content">
             <div class="section-header">
-                <h2 class="section-title">Рекомендуемые артисты</h2>
-                <a href="#" class="view-all">Смотреть все</a>
+                <h2 class="section-title">Недавно прослушано</h2>
             </div>
             
-            <div class="grid grid-6">
-                <div class="card">
-                    <img src="../static/images/scale_1200.jpg" alt="yral" class="card-img">
-                    <div class="card-title">The Weeknd</div>
-                    <div class="card-subtitle">✓ Проверенный</div>
+            <div class="track-list">
+                <div class="track-item">
+                    <div class="track-number">🕒</div>
+                    <div class="track-info">
+                        <div class="track-title">Digital Dreams</div>
+                        <div class="track-artist">madk1d • 2 часа назад</div>
+                    </div>
+                    <div class="track-duration">3:30</div>
+                    <button class="play-button">▶</button>
                 </div>
                 
-                <div class="card">
-                    <img src="../static/images/scale_1200.jpg" alt="yral" class="card-img">
-                    <div class="card-title">Taylor Swift</div>
-                    <div class="card-subtitle">✓ Проверенный</div>
-                </div>
-                
-                <div class="card">
-                    <img src="../static/images/scale_1200.jpg" alt="yral" class="card-img">
-                    <div class="card-title">Drake</div>
-                    <div class="card-subtitle">✓ Проверенный</div>
-                </div>
-                
-                <div class="card">
-                    <img src="../static/images/scale_1200.jpg" alt="yral" class="card-img">
-                    <div class="card-title">Ariana Grande</div>
-                    <div class="card-subtitle">✓ Проверенный</div>
-                </div>
-                
-                <div class="card">
-                    <img src="../static/images/scale_1200.jpg" alt="yral" class="card-img">
-                    <div class="card-title">Ed Sheeran</div>
-                    <div class="card-subtitle">✓ Проверенный</div>
-                </div>
-                
-                <div class="card">
-                    <img src="../static/images/scale_1200.jpg" alt="yral" class="card-img">
-                    <div class="card-title">Billie Eilish</div>
-                    <div class="card-subtitle">✓ Проверенный</div>
+                <div class="track-item">
+                    <div class="track-number">🕒</div>
+                    <div class="track-info">
+                        <div class="track-title">Лунный свет</div>
+                        <div class="track-artist">tewiq • 5 часов назад</div>
+                    </div>
+                    <div class="track-duration">2:51</div>
+                    <button class="play-button">▶</button>
                 </div>
             </div>
-        </section>
+        </div>
     </main>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Weren't Here Music</h3>
-                <p>Ваша музыкальная платформа для открытия новых артистов и треков.</p>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Навигация</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Главная</a></li>
-                    <li><a href="#">Поиск</a></li>
-                    <li><a href="#">Моя медиатека</a></li>
-                    <li><a href="#">Премиум</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Компания</h3>
-                <ul class="footer-links">
-                    <li><a href="#">О нас</a></li>
-                    <li><a href="#">Вакансии</a></li>
-                    <li><a href="#">Для артистов</a></li>
-                    <li><a href="#">Реклама</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Полезные ссылки</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Поддержка</a></li>
-                    <li><a href="#">Бесплатное приложение</a></li>
-                    <li><a href="#">Подарочные карты</a></li>
-                    <li><a href="#">Сообщество</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="copyright">
-            <p>&copy; 2025 Weren't Here Music. Все права защищены.</p>
-        </div>
-    </footer>
