@@ -4,3 +4,7 @@ from .models import *
 def main(request):
 
     return render(request, 'main.html')
+
+def library(request):
+
+    return render(request, 'library.html')

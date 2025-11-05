@@ -363,6 +363,49 @@ section {
     color: #b3b3b3;
 }
 
+.library-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.tab {
+    padding: 0.8rem 1.5rem;
+    background: none;
+    border: none;
+    color: #b3b3b3;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.tab.activate {
+    background: rgba(255, 65, 108, 0.2);
+    color: #41ff6a;
+}
+
+.tab:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #b3b3b3;
+}
+
+.empty-state h3 {
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.recent-played {
+    margin-top: 2rem;
+}
+
 @media (max-widht: 768px) {
     .header {
         flex-direction: column;
