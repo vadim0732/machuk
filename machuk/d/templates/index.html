@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Weren't Here Music{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="header">
+        <a href="{% url 'main' %}" class="logo">Weren't Here Music</a>
+        
+        <nav class="nav">
+            <a href="{% url 'main' %}" {% if request.path == '/' %}class="active"{% endif %}>Главная</a>
+            <a href="{% url 'library' %}" {% if request.path == '/library/' %}class="active"{% endif %}>Моя медиатека</a>
+        </nav>
+
+        <form class="search-form" action="#">
+            <input type="text" class="search-input" placeholder="Поиск артистов...">
+            <button type="submit" class="search-button">Найти</button>
+        </form>
+    </header>
+
+    <main class="main-content">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Weren't Here Music</h3>
+                <p>Андеграунд музыкальная платформа для настоящих ценителей</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Навигация</h3>
+                <ul class="footer-links">
+                    <li><a href="{% url 'main' %}">Главная</a></li>
+                    <li><a href="{% url 'library' %}">Моя медиатека</a></li>
+                    <li><a href="#">Популярное</a></li>
+                    <li><a href="#">Новые релизы</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Артисты</h3>
+                <ul class="footer-links">
+                    <li><a href="#">fortuna812</a></li>
+                    <li><a href="#">onda andar</a></li>
+                    <li><a href="#">Темный принц</a></li>
+                    <li><a href="#">madk1d</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Поддержка</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Помощь</a></li>
+                    <li><a href="#">Для артистов</a></li>
+                    <li><a href="#">Реклама</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Weren't Here Music. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>

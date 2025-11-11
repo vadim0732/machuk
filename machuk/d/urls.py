@@ -5,6 +5,6 @@ from .views import main
 from .views import library
 
 urlpatterns = [
-    path('main.html', main),
-    path('library.html', library)
+    path('main', main, name='main'),
+    path('library', library, name='library')
 ]

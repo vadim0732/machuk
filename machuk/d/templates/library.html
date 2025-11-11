@@ -1,134 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Моя медиатека - Weren't Here Music</title>
-    <link rel="stylesheet" href="../static/CSS/style.css">
-</head>
-<body>
-    <header class="header">
-        <a href="index.html" class="logo">Weren't Here Music</a>
-        
-        <nav class="nav">
-            <a href="main.html">Главная</a>
-            <a href="library.html" class="active">Моя медиатека</a>
-            <a href="search.html">Поиск</a>
-            <a href="#">Чарты</a>
-        </nav>
+{% extends 'index.html' %}
+{% load static %}
 
-        <form class="search-form" action="search.html">
-            <input type="text" name="q" class="search-input" placeholder="Поиск в медиатеке...">
-            <button type="submit" class="search-button">Найти</button>
-        </form>
-    </header>
+{% block content %}
+<div class="hero">
+    <h1>Моя медиатека</h1>
+    <p>Ваша личная коллекция музыки</p>
+</div>
 
-    <main class="main-content">
-        <div class="hero">
-            <h1>Моя медиатека</h1>
-            <p>Ваша личная коллекция музыки</p>
-        </div>
-
-        <div class="library-tabs">
-            <button class="tab active" onclick="switchTab('liked')">Любимые треки</button>
-            <button class="tab" onclick="switchTab('artists')">Подписки</button>
-            <button class="tab" onclick="switchTab('history')">История</button>
-        </div>
-
-        <div id="liked" class="tab-content active">
-            <div class="section-header">
-                <h2 class="section-title">Любимые треки</h2>
-                <span class="track-count">15 треков</span>
+    <section class="section">
+    <div class="section-header">
+        <h2 class="section-title">Любимые треки</h2>
+        <span class="track-count">{{ favorite_tracks|length }} треков</span>
+    </div>
+    
+    <div class="track-list">
+        {% for track in favorite_tracks %}
+        <div class="track-item">
+            <div class="track-number">{{ forloop.counter }}</div>
+            <div class="track-info">
+                <div class="track-title">{{ track.title }}</div>
+                <div class="track-artist">{{ track.artist.name }}</div>
             </div>
-            
-            <div class="track-list">
-                <div class="track-item">
-                    <div class="track-number">❤️</div>
-                    <div class="track-info">
-                        <div class="track-title">TryToFriend</div>
-                        <div class="track-artist">fortuna812</div>
-                    </div>
-                    <div class="track-duration">2:45</div>
-                    <button class="play-button">▶</button>
-                </div>
-                
-                <div class="track-item">
-                    <div class="track-number">❤️</div>
-                    <div class="track-info">
-                        <div class="track-title">Снайпер</div>
-                        <div class="track-artist">Tewiq</div>
-                    </div>
-                    <div class="track-duration">3:12</div>
-                    <button class="play-button">▶</button>
-                </div>
-                
-                <div class="track-item">
-                    <div class="track-number">❤️</div>
-                    <div class="track-info">
-                        <div class="track-title">Overdose</div>
-                        <div class="track-artist">Темный Принц</div>
-                    </div>
-                    <div class="track-duration">2:58</div>
-                    <button class="play-button">▶</button>
-                </div>
+            <div class="track-duration">{{ track.duration }} сек</div>
+            <button class="play-button">▶</button>
+        </div>
+        {% empty %}
+        <div class="track-item">
+            <div class="track-info">
+                <div class="track-title">Нет любимых треков</div>
+                <div class="track-artist">Добавьте треки через админку</div>
             </div>
         </div>
+        {% endfor %}
+    </div>
+</section>
 
-        <div id="artists" class="tab-content">
-            <div class="section-header">
-                <h2 class="section-title">Подписки на артистов</h2>
+<section class="section">
+    <div class="section-header">
+        <h2 class="section-title">Подписки на артистов</h2>
+        <a href="#" class="view-all">Все артисты</a>
+    </div>
+    
+    <div class="grid grid-6">
+        {% for artist in subscribed_artists %}
+        <div class="card">
+            {% if artist.photo_url %}
+            <img src="{{ artist.photo_url }}" alt="{{ artist.name }}" class="card-img">
+            {% else %}
+            <div class="card-img" style="background: #333; display: flex; align-items: center; justify-content: center;">
+                👤
             </div>
-            
-            <div class="grid grid-6">
-                <div class="card">
-                    <img src="../static/images/Fortuna812.jpg" 
-                         alt="fortuna812" class="card-img">
-                    <div class="card-title">fortuna812</div>
-                    <div class="card-subtitle">✓ Проверенный</div>
-                </div>
-                
-                <div class="card">
-                    <img src="../static/images/Tewiq.jpg" 
-                         alt="Tewiq" class="card-img">
-                    <div class="card-title">Tewiq</div>
-                    <div class="card-subtitle">✓ Проверенный</div>
-                </div>
-                
-                <div class="card">
-                    <img src="../static\images\DarkPrince.jpg" 
-                         alt="anda" class="card-img">
-                    <div class="card-title">Темный Принц</div>
-                    <div class="card-subtitle">✓ Проверенный</div>
-                </div>
-            </div>
+            {% endif %}
+            <div class="card-title">{{ artist.name }}</div>
+            {% if artist.verified %}
+            <div class="card-subtitle">✓ Проверенный</div>
+            {% endif %}
         </div>
+        {% empty %}
+        <div class="card">
+            <div class="card-img" style="background: #333; display: flex; align-items: center; justify-content: center;">
+                👤
+            </div>
+            <div class="card-title">Нет подписок</div>
+            <div class="card-subtitle">Подпишитесь на артистов</div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
 
-        <div id="history" class="tab-content">
-            <div class="section-header">
-                <h2 class="section-title">Недавно прослушано</h2>
+<section class="section">
+    <div class="section-header">
+        <h2 class="section-title">Недавно прослушано</h2>
+        <a href="#" class="view-all">Вся история</a>
+    </div>
+    
+    <div class="grid grid-6">
+        {% for track in favorite_tracks|slice:":6" %}
+        <div class="card">
+            {% if track.cover_url %}
+            <img src="{{ track.cover_url }}" alt="{{ track.title }}" class="card-img">
+            {% else %}
+            <div class="card-img" style="background: #333; display: flex; align-items: center; justify-content: center;">
+                🎵
             </div>
-            
-            <div class="track-list">
-                <div class="track-item">
-                    <div class="track-number">🕒</div>
-                    <div class="track-info">
-                        <div class="track-title">Digital Dreams</div>
-                        <div class="track-artist">madk1d • 2 часа назад</div>
-                    </div>
-                    <div class="track-duration">3:30</div>
-                    <button class="play-button">▶</button>
-                </div>
-                
-                <div class="track-item">
-                    <div class="track-number">🕒</div>
-                    <div class="track-info">
-                        <div class="track-title">Лунный свет</div>
-                        <div class="track-artist">tewiq • 5 часов назад</div>
-                    </div>
-                    <div class="track-duration">2:51</div>
-                    <button class="play-button">▶</button>
-                </div>
-            </div>
+            {% endif %}
+            <div class="card-title">{{ track.title }}</div>
+            <div class="card-subtitle">{{ track.artist.name }}</div>
         </div>
-    </main>
-</body>
+        {% empty %}
+        <div class="card">
+            <div class="card-img" style="background: #333; display: flex; align-items: center; justify-content: center;">
+                🎵
+            </div>
+            <div class="card-title">История пуста</div>
+            <div class="card-subtitle">Слушайте музыку</div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

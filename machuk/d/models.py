@@ -69,7 +69,8 @@ class Track(models.Model):
     album = models.ForeignKey(Album, verbose_name='альбом', on_delete=models.SET_NULL, blank=True, null=True)
     duration = models.IntegerField(verbose_name='длительность (секунды)')
     listens_count = models.IntegerField(verbose_name='количество прослушиваний', default=0)
-    created_at = models.DateField(verbose_name='дата добавления', auto_now_add=True)
+    created_at = models.DateField(verbose_name='дата добавления', auto_now_add=True, null=True)
+    cover_url = models.URLField(verbose_name="Обложка", blank=True, null=True)
     
     class Meta:
         verbose_name = "Трек"
