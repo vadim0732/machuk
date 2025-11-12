@@ -19,7 +19,7 @@
             <div class="track-number">{{ forloop.counter }}</div>
             <div class="track-info">
                 <div class="track-title">{{ track.title }}</div>
-                <div class="track-artist">{{ track.artist.name }}</div>
+                <div class="track-artist">{{ track.main_artist.name }}</div>
             </div>
             <div class="track-duration">{{ track.duration }} сек</div>
             <button class="play-button">▶</button>
@@ -38,7 +38,7 @@
 <section class="section">
     <div class="section-header">
         <h2 class="section-title">Подписки на артистов</h2>
-        <a href="#" class="view-all">Все артисты</a>
+        <a href="" class="view-all">Все артисты</a>
     </div>
     
     <div class="grid grid-6">
@@ -71,11 +71,11 @@
 <section class="section">
     <div class="section-header">
         <h2 class="section-title">Недавно прослушано</h2>
-        <a href="#" class="view-all">Вся история</a>
+        <a href="" class="view-all">Вся история</a>
     </div>
     
     <div class="grid grid-6">
-        {% for track in favorite_tracks|slice:":6" %}
+        {% for track in favorite_tracks %}
         <div class="card">
             {% if track.cover_url %}
             <img src="{{ track.cover_url }}" alt="{{ track.title }}" class="card-img">
@@ -85,7 +85,7 @@
             </div>
             {% endif %}
             <div class="card-title">{{ track.title }}</div>
-            <div class="card-subtitle">{{ track.artist.name }}</div>
+            <div class="card-subtitle">{{ track.main_artist.name }}</div>
         </div>
         {% empty %}
         <div class="card">

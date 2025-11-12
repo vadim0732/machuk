@@ -67,7 +67,7 @@ class Track(models.Model):
     main_artist = models.ForeignKey(Artist, verbose_name='основной артист', on_delete=models.CASCADE)
     featured_artists = models.ManyToManyField(Artist, verbose_name='участвующие артисты',related_name='featured_tracks', blank=True)
     album = models.ForeignKey(Album, verbose_name='альбом', on_delete=models.SET_NULL, blank=True, null=True)
-    duration = models.IntegerField(verbose_name='длительность (секунды)')
+    duration = models.CharField(verbose_name='длительность')
     listens_count = models.IntegerField(verbose_name='количество прослушиваний', default=0)
     created_at = models.DateField(verbose_name='дата добавления', auto_now_add=True, null=True)
     cover_url = models.URLField(verbose_name="Обложка", blank=True, null=True)
@@ -82,7 +82,7 @@ class Track(models.Model):
         ]
 
     def __str__(self):
-        return self.title
+        return f"{self.title} - {self.main_artist.name}"
 
 class ListeningHistory(models.Model):
     user = models.ForeignKey(User, verbose_name='пользователь', on_delete=models.CASCADE)

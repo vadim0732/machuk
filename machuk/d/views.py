@@ -14,8 +14,8 @@ def main(request):
     return render(request, 'main.html', context)
 
 def library(request):
-    favorite_tracks = Track.objects.all()[:15]
-    subscribed_artists = Artist.objects.all()[:12]
+    favorite_tracks = Track.objects.all()[:6]
+    subscribed_artists = Artist.objects.all()[:6]
 
     context = {
         'favorite_tracks': favorite_tracks,
