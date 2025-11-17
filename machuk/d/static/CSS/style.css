@@ -427,7 +427,314 @@ section {
     border-radius: 15px;
 }
 
-@media (max-widht: 768px) {
+/* ARTIST PAGE STYLES */
+.artist-hero {
+    padding: 4rem 2rem;
+    margin: -2rem -2rem 3rem -2rem;
+    min-height: 400px;
+    display: flex;
+    align-items: flex-end;
+    color: white;
+    position: relative;
+    background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.9) 100%), #121212;
+    background-size: cover;
+    background-position: center;
+}
+
+.artist-hero-content {
+    display: flex;
+    align-items: flex-end;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.artist-avatar {
+    flex-shrink: 0;
+}
+
+.artist-avatar-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.artist-avatar-placeholder {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #41ff61, #19ff19);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 4rem;
+    font-weight: bold;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+}
+
+.artist-info {
+    flex: 1;
+    padding-bottom: 1rem;
+}
+
+.artist-name {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin: 0 0 1rem 0;
+    line-height: 1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.artist-verified {
+    margin-bottom: 1.5rem;
+}
+
+.verified-badge-large {
+    background: #41ff61;
+    color: #121212;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.artist-stats {
+    display: flex;
+    gap: 2rem;
+    font-size: 1.1rem;
+}
+
+.stat {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    font-weight: 500;
+}
+
+.album-placeholder {
+    background: linear-gradient(135deg, #1db954, #1ed760);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+}
+
+.track-list .track-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+}
+
+.track-list .track-number {
+    width: 20px;
+    text-align: center;
+    color: #b3b3b3;
+    font-size: 0.9rem;
+}
+
+.track-list .track-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+}
+
+.track-list .track-title {
+    font-weight: 500;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-list .track-album {
+    font-size: 0.8rem;
+    color: #b3b3b3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-list .track-duration {
+    color: #b3b3b3;
+    font-size: 0.9rem;
+}
+
+.track-list .listens-count {
+    color: #b3b3b3;
+    font-size: 0.9rem;
+    min-width: 80px;
+    text-align: right;
+}
+
+.track-list .play-button {
+    opacity: 0;
+    margin-left: 0;
+    transition: all 0.3s ease;
+}
+
+.track-list .track-item:hover .play-button {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.album-tracks-count {
+    color: #888;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+}
+
+.card-album {
+    font-size: 0.8rem;
+    color: #b3b3b3;
+    margin-bottom: 0.25rem;
+}
+
+.artist-link {
+    color: #b3b3b3;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.artist-link:hover {
+    color: #41ff61;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.artist-page .grid-4 {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+@media (max-width: 768px) {
+    .artist-page .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .artist-page .grid-4 .card-img {
+        height: 120px;
+        margin-bottom: 0.6rem;
+    }
+    
+    .artist-page .grid-4 .album-placeholder {
+        height: 120px;
+        font-size: 1.5rem;
+    }
+    
+    .artist-page .grid-4 .card {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .artist-page .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .artist-page .grid-4 .card-img {
+        height: 100px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .artist-page .grid-4 .album-placeholder {
+        height: 100px;
+        font-size: 1.2rem;
+    }
+    
+    .artist-page .grid-4 .card {
+        padding: 0.7rem;
+    }
+    
+    .artist-page .grid-4 .card-title {
+        font-size: 0.9rem;
+    }
+    
+    .artist-page .grid-4 .card-subtitle,
+    .artist-page .grid-4 .card-album,
+    .artist-page .grid-4 .album-tracks-count {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .artist-hero {
+        padding: 2rem 1rem;
+        margin: -1rem -1rem 2rem -1rem;
+        min-height: 300px;
+    }
+    
+    .artist-hero-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .artist-avatar-img,
+    .artist-avatar-placeholder {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .artist-name {
+        font-size: 2.5rem;
+    }
+    
+    .artist-stats {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .track-list .track-item {
+        grid-template-columns: auto 1fr auto;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+    }
+    
+    .track-list .track-duration,
+    .track-list .listens-count {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .artist-name {
+        font-size: 2rem;
+    }
+    
+    .artist-avatar-img,
+    .artist-avatar-placeholder {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .artist-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    
+    .stat {
+        width: fit-content;
+    }
+}
+
+@media (max-width: 768px) {
     .header {
         flex-direction: column;
         gap: 1rem;

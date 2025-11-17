@@ -16,10 +16,10 @@
             <a href="{% url 'library' %}" {% if request.path == '/library' %}class="active"{% endif %}>Моя медиатека</a>
         </nav>
 
-        <form class="search-form" action="#">
-            <input type="text" class="search-input" placeholder="Поиск артистов...">
-            <button type="submit" class="search-button">Найти</button>
-        </form>
+    <form class="search-form" method="GET" action="{% url 'artist_search' %}">
+        <input type="text" name="q" class="search-input" placeholder="Поиск артиста..." value="{{ request.GET.q }}">
+        <button type="submit" class="search-button">Найти</button>
+    </form>
     </header>
 
     <main class="main-content">

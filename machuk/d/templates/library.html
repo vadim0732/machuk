@@ -19,7 +19,9 @@
             <div class="track-number">{{ forloop.counter }}</div>
             <div class="track-info">
                 <div class="track-title">{{ track.title }}</div>
-                <div class="track-artist">{{ track.main_artist.name }}</div>
+                    <a href="{% url 'artist_detail' track.main_artist.name %}" class="artist-link">
+                        {{ track.main_artist.name }}
+                    </a>
             </div>
             <div class="track-duration">{{ track.duration }} сек</div>
             <button class="play-button">▶</button>
@@ -43,6 +45,7 @@
     
     <div class="grid grid-6">
         {% for artist in subscribed_artists %}
+        <a href="{% url 'artist_detail' artist.name %}" class="card-link">
         <div class="card">
             {% if artist.photo_url %}
             <img src="{{ artist.photo_url }}" alt="{{ artist.name }}" class="card-img">
@@ -56,6 +59,7 @@
             <div class="card-subtitle">✓ Проверенный</div>
             {% endif %}
         </div>
+        </a>
         {% empty %}
         <div class="card">
             <div class="card-img" style="background: #333; display: flex; align-items: center; justify-content: center;">
@@ -76,6 +80,7 @@
     
     <div class="grid grid-6">
         {% for track in favorite_tracks %}
+        <a href="{% url 'artist_detail' track.main_artist.name %}" class="card-link">
         <div class="card">
             {% if track.cover_url %}
             <img src="{{ track.cover_url }}" alt="{{ track.title }}" class="card-img">
@@ -87,6 +92,7 @@
             <div class="card-title">{{ track.title }}</div>
             <div class="card-subtitle">{{ track.main_artist.name }}</div>
         </div>
+        </a>
         {% empty %}
         <div class="card">
             <div class="card-img" style="background: #333; display: flex; align-items: center; justify-content: center;">

@@ -1,5 +1,7 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from .models import Artist, Track, Album
+from django.db.models import Q
+
 
 def main(request):
     popular_tracks = Track.objects.order_by('-listens_count')[:8]
@@ -22,3 +24,28 @@ def library(request):
         'subscribed_artists': subscribed_artists,
     }
     return render(request, 'library.html', context)
+
+def artist_detail(request, artist_name):
+    artist = get_object_or_404(Artist, name=artist_name)
+    tracks = Track.objects.filter(main_artist=artist).order_by('-listens_count')
+    albums = Album.objects.filter(artist=artist).order_by('-release_date')
+    
+    context = {
+        'artist': artist,
+        'tracks': tracks,
+        'albums': albums,
+    }
+    return render(request, 'artist.html', context)
+
+def artist_search(request):
+    query = request.GET.get('q', '').strip()
+    
+    if query:
+        artist = Artist.objects.filter(name__iexact=query).first()
+        
+        if artist:
+            return redirect('artist_detail', artist_name=artist.name)
+        else:
+            return render(request, 'artist_not_found.html', {'query': query})
+    
+    return redirect('main')

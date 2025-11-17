@@ -1,0 +1,102 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}{{ artist.name }} - Weren't Here Music{% endblock %}
+
+{% block content %}
+<div class="artist-page">
+<section class="artist-hero">
+    <div class="artist-hero-content">
+        <div class="artist-avatar">
+            {% if artist.photo_url %}
+            <img src="{{ artist.photo_url }}" alt="{{ artist.name }}" class="artist-avatar-img">
+            {% else %}
+            <div class="artist-avatar-placeholder">
+                {{ artist.name }}
+            </div>
+            {% endif %}
+        </div>
+        <div class="artist-info">
+            <h1 class="artist-name">{{ artist.name }}</h1>
+            {% if artist.verified %}
+            <div class="artist-verified">
+                <span class="verified-badge-large">✓ Проверенный артист</span>
+            </div>
+            {% endif %}
+            <div class="artist-stats">
+                <span class="stat">{{ tracks.count }} треков</span>
+                <span class="stat">{{ albums.count }} альбомов</span>
+                <span class="stat">{{ artist.total_listens }} прослушиваний</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-header">
+        <h2 class="section-title">Популярные треки</h2>
+        <span class="track-count">{{ tracks.count }} треков</span>
+    </div>
+    
+    <div class="track-list">
+        {% for track in tracks %}
+        <div class="track-item">
+            <div class="track-number">{{ forloop.counter }}</div>
+            <div class="track-info">
+                <div class="track-title">{{ track.title }}</div>
+                <div class="track-album">
+                    {% if track.album %}
+                    {{ track.album.title }}
+                    {% else %}
+                    Сингл
+                    {% endif %}
+                </div>
+            </div>
+            <div class="track-duration">{{ track.duration }} сек</div>
+            <div class="listens-count">{{ track.listens_count }}</div>
+            <button class="play-button">▶</button>
+        </div>
+        {% empty %}
+        <div class="track-item">
+            <div class="track-info">
+                <div class="track-title">Треков пока нет</div>
+                <div class="track-album">Артист еще не выпустил треки</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-header">
+        <h2 class="section-title">Альбомы и релизы</h2>
+        <span class="track-count">{{ albums.count }} релизов</span>
+    </div>
+    
+    <div class="grid grid-4">
+        {% for album in albums %}
+        <div class="card track-card">
+            {% if album.cover_url %}
+            <img src="{{ album.cover_url }}" alt="{{ album.title }}" class="card-img">
+            {% else %}
+            <div class="card-img album-placeholder">
+                🎵
+            </div>
+            {% endif %}
+            <div class="card-title">{{ album.title }}</div>
+            <div class="card-subtitle">{{ album.get_album_type_display }}</div>
+            <div class="card-album">{{ album.release_date|date:"Y" }}</div>
+        </div>
+        {% empty %}
+        <div class="card track-card">
+            <div class="card-img album-placeholder">
+                🎵
+            </div>
+            <div class="card-title">Альбомов пока нет</div>
+            <div class="card-subtitle">Артист еще не выпустил альбомы</div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+</div>
+{% endblock %}
