@@ -12,8 +12,22 @@
 
 <section class="section">
     <div class="section-header">
-        <h2 class="section-title">Хиты</h2>
-        <a href="{% url 'library' %}" class="view-all">Все треки</a>
+        <h2 class="section-title"> Хиты</h2>
+        <div class="filters-container">
+            <div class="sort-buttons">
+                <a href="?sort=desc" 
+                   class="sort-btn {% if current_sort == 'desc' %}active{% endif %}"
+                   title="Сначала популярные">
+                    ↓ Популярные
+                </a>
+                <a href="?sort=asc" 
+                   class="sort-btn {% if current_sort == 'asc' %}active{% endif %}"
+                   title="Сначала непопулярные">
+                    ↑ Непопулярные
+                </a>
+            </div>
+            <a href="{% url 'library' %}" class="view-all">Все треки</a>
+        </div>
     </div>
     
     <div class="track-list">
@@ -22,10 +36,11 @@
             <div class="track-number">{{ forloop.counter }}</div>
             <div class="track-info">
                 <div class="track-title">{{ track.title }}</div>
-                <div class="track-artist">    
+                <div class="track-meta">
                     <a href="{% url 'artist_detail' track.main_artist.name %}" class="artist-link">
                         {{ track.main_artist.name }}
-                     </a>
+                    </a>
+                    <span class="listens-count-compact">• {{ track.listens_count }} прослушиваний</span>
                 </div>
             </div>
             <div class="track-duration">{{ track.duration }}</div>

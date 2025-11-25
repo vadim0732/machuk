@@ -329,6 +329,40 @@ section {
     transform: scale(1.1);
 }
 
+.sort-buttons {
+    display: flex;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem;
+    border-radius: 12px;
+}
+
+.sort-btn {
+    padding: 0.5rem 1rem;
+    background: none;
+    border: none;
+    border-radius: 8px;
+    color: #b3b3b3;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.sort-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.sort-btn.active {
+    background: #41ff61;
+    color: #121212;
+    font-weight: 600;
+}
+
 .footer {
     background: rgba(10, 10, 10, 0.95);
     padding: 3rem 2rem;
