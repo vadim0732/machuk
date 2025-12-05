@@ -82,7 +82,7 @@ body {
 
 .search-input:focus {
     background: white;
-    box-shadow: 0 0 0 3px rgba(255, 66, 108, 0.3);
+    box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.3);
 }
 
 .search-button {
@@ -147,7 +147,7 @@ body {
 .cta-button:hover {
     background: #22fa22;
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgb(26, 255, 45);
+    box-shadow: 0 10px 25px rgba(26, 255, 45, 0.5);
 }
 
 section {
@@ -199,6 +199,7 @@ section {
     cursor: pointer;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
 }
 
 .card:hover {
@@ -213,7 +214,7 @@ section {
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 1rem;
-    transition: transform 0.3 ease;
+    transition: transform 0.3s ease;
 }
 
 .card:hover .card-img {
@@ -371,11 +372,11 @@ section {
 }
 
 .footer-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
 }
 
 .footer-section h3 {
@@ -395,7 +396,7 @@ section {
 .footer-links a {
     color: #b3b3b3;
     text-decoration: none;
-    transition: color 0.3 ease;
+    transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
@@ -430,7 +431,7 @@ section {
 }
 
 .tab.activate {
-    background: rgba(255, 65, 108, 0.2);
+    background: rgba(65, 255, 106, 0.2);
     color: #41ff6a;
 }
 
@@ -623,6 +624,59 @@ section {
     transform: scale(1.1);
 }
 
+.clear-search {
+    color: #ff6b6b;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 15px;
+    background: rgba(255, 107, 107, 0.1);
+    transition: all 0.3s;
+}
+
+.clear-search:hover {
+    background: rgba(255, 107, 107, 0.2);
+    text-decoration: none;
+}
+
+.search-hint {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #888;
+    text-align: center;
+}
+
+.search-results-info {
+    background: rgba(29, 185, 84, 0.1);
+    border-radius: 10px;
+    padding: 15px 25px;
+    margin: 25px auto;
+    max-width: 800px;
+    text-align: center;
+    font-size: 15px;
+    color: #b3b3b3;
+    border: 1px solid rgba(29, 185, 84, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-results-info strong {
+    color: #1db954;
+}
+
+.no-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: #888;
+}
+
+.no-results-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
 .album-tracks-count {
     color: #888;
     font-size: 0.8rem;
@@ -655,56 +709,43 @@ section {
 }
 
 @media (max-width: 768px) {
-    .artist-page .grid-4 {
-        grid-template-columns: repeat(2, 1fr);
+    .header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
     }
-    
-    .artist-page .grid-4 .card-img {
-        height: 120px;
-        margin-bottom: 0.6rem;
-    }
-    
-    .artist-page .grid-4 .album-placeholder {
-        height: 120px;
-        font-size: 1.5rem;
-    }
-    
-    .artist-page .grid-4 .card {
-        padding: 0.8rem;
-    }
-}
 
-@media (max-width: 480px) {
-    .artist-page .grid-4 {
-        grid-template-columns: repeat(2, 1fr);
+    .nav {
+        gap: 0.5rem;
     }
-    
-    .artist-page .grid-4 .card-img {
-        height: 100px;
-        margin-bottom: 0.5rem;
-    }
-    
-    .artist-page .grid-4 .album-placeholder {
-        height: 100px;
-        font-size: 1.2rem;
-    }
-    
-    .artist-page .grid-4 .card {
-        padding: 0.7rem;
-    }
-    
-    .artist-page .grid-4 .card-title {
-        font-size: 0.9rem;
-    }
-    
-    .artist-page .grid-4 .card-subtitle,
-    .artist-page .grid-4 .card-album,
-    .artist-page .grid-4 .album-tracks-count {
-        font-size: 0.7rem;
-    }
-}
 
-@media (max-width: 768px) {
+    .search-from {
+        width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
+
+    .grid-4 {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .track-count {
+        align-self: flex-start;
+    }
+
+    /* Artist page */
     .artist-hero {
         padding: 2rem 1rem;
         margin: -1rem -1rem 2rem -1rem;
@@ -744,6 +785,25 @@ section {
     .track-list .listens-count {
         display: none;
     }
+    
+    /* Artist albums */
+    .artist-page .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .artist-page .grid-4 .card-img {
+        height: 120px;
+        margin-bottom: 0.6rem;
+    }
+    
+    .artist-page .grid-4 .album-placeholder {
+        height: 120px;
+        font-size: 1.5rem;
+    }
+    
+    .artist-page .grid-4 .card {
+        padding: 0.8rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -766,42 +826,32 @@ section {
     .stat {
         width: fit-content;
     }
-}
-
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
+    
+    .artist-page .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
     }
-
-    .nav {
-        gap: 0.5rem;
+    
+    .artist-page .grid-4 .card-img {
+        height: 100px;
+        margin-bottom: 0.5rem;
     }
-
-    .search-form {
-        width: 100%;
+    
+    .artist-page .grid-4 .album-placeholder {
+        height: 100px;
+        font-size: 1.2rem;
     }
-
-    .hero h1 {
-        font-size: 2.5rem;
+    
+    .artist-page .grid-4 .card {
+        padding: 0.7rem;
     }
-
-    .main-content {
-        padding: 1rem;
+    
+    .artist-page .grid-4 .card-title {
+        font-size: 0.9rem;
     }
-
-    .grid-4 {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-
-    .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
-    .track-count {
-        align-self: flex-start;
+    
+    .artist-page .grid-4 .card-subtitle,
+    .artist-page .grid-4 .card-album,
+    .artist-page .grid-4 .album-tracks-count {
+        font-size: 0.7rem;
     }
 }

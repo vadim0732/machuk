@@ -27,12 +27,21 @@ def main(request):
     return render(request, 'main.html', context)
 
 def library(request):
-    favorite_tracks = Track.objects.all()[:6]
+    search_query = request.GET.get('search', '').strip()
+
+    favorite_tracks = Track.objects.all()
+
+    if search_query:
+        favorite_tracks = favorite_tracks.filter(title__icontains=search_query)
+    else:
+        favorite_tracks = favorite_tracks[:6]
+    
     subscribed_artists = Artist.objects.all()[:6]
 
     context = {
         'favorite_tracks': favorite_tracks,
         'subscribed_artists': subscribed_artists,
+        'search_query': search_query,
     }
     return render(request, 'library.html', context)
 

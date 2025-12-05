@@ -13,6 +13,21 @@
         <span class="track-count">{{ favorite_tracks|length }} треков</span>
     </div>
     
+    <form method="get" action="{% url 'library' %}" class="search-form">
+        <div class="search-container">
+            <input type="text" 
+                   name="search" 
+                   placeholder="Поиск треков..." 
+                   value="{{ search_query|default:'' }}"
+                   class="search-input">
+            <button type="submit" class="search-button">Поиск</button>
+            {% if search_query %}
+                <a href="{% url 'library' %}" class="clear-search">Очистить</a>
+            {% endif %}
+        </div>
+    </form>
+
+
     <div class="track-list">
         {% for track in favorite_tracks %}
         <div class="track-item">
